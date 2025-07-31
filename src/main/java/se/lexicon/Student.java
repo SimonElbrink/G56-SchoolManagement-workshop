@@ -1,5 +1,7 @@
 package se.lexicon;
 
+import java.util.Objects;
+
 public class Student {
     private int id;
     private String name;
@@ -55,5 +57,33 @@ public class Student {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append("id ").append(id).append("")
+                .append("name ").append(name).append("")
+                .append("email").append(email).append("")
+                .append("address").append(address);
+
+        return str.toString();
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, name, email, address);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o){
+            return true;
+        } if(!(o instanceof Student)){
+            return false;
+        }
+        Student field = (Student) o;
+        return id== field.id && name.equals(field.name)
+                && email.equals(field.email) && address.equals(field.address);
     }
 }
