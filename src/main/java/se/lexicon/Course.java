@@ -10,9 +10,9 @@ public class Course {
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
-    List<Student> students;
+    private List<Student> students;
 
-    public Course(int id, String courseName, LocalDate startDate, int weekDuration, List<Student> students) {
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration) {
         if(id==0){
             throw new IllegalArgumentException("Id cannot be null or empty");
         }
@@ -66,5 +66,17 @@ public class Course {
 
     public void setWeekDuration(int weekDuration) {
         this.weekDuration = weekDuration;
+    }
+
+    public void register(Student student) {
+        if(!students.contains(student)) {
+            students.add(student);
+        }
+    }
+
+    public void unregister(Student student) {
+        if(students.contains(student)) {
+            students.remove(student);
+        }
     }
 }
