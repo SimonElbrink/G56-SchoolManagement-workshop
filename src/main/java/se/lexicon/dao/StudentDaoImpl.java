@@ -27,7 +27,7 @@ public class StudentDaoImpl implements StudentDao {
         while(iter.hasNext()){
             Student studentIter = iter.next();
             String gettingEmail = studentIter.getEmail();
-            if(email.equals(gettingEmail)){
+            if(email.equalsIgnoreCase(gettingEmail)){
                 return studentIter;
             }
         } return null;
@@ -35,7 +35,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> findByName(String name){
         return students.stream().filter(student
-                -> student.getName().equals(name)).collect(Collectors.toList());
+                -> student.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
     @Override
     public Student findById(int id){
