@@ -28,7 +28,7 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public List<Course> findByName(String name){
         return courses.stream().filter(course
-                -> course.getCourseName().equals(name)).collect(Collectors.toList());
+                -> course.getCourseName().equalsIgnoreCase(name)).collect(Collectors.toList());
     }
     @Override
     public List<Course> findByDate(LocalDate date){
