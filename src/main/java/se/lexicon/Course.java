@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Course {
     private int id;
@@ -78,5 +79,21 @@ public class Course {
         if(students.contains(student)) {
             students.remove(student);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Course)) return false;
+        Course course = (Course) o;
+        return id == course.id &&
+                weekDuration == course.weekDuration &&
+                courseName.equals(course.courseName) &&
+                startDate.equals(course.startDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, courseName, startDate, weekDuration);
     }
 }
